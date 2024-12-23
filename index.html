@@ -105,8 +105,8 @@
         }
 
         .explore {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 items per row */
             gap: 20px;
             margin-top: 20px;
         }
@@ -121,8 +121,6 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-            max-width: 400px;
         }
 
         .card:hover {
@@ -195,7 +193,7 @@
     <div class="container">
         <section id="about">
             <h3 class="section-title">Explore All Game Modes & More</h3>
-            <p>Discover all the game modes in Chaos Core, including intense team battles, strategic challenges, and more. Explore weapons, maps, and additional features to enhance your experience.</p>
+            <p>Discover all the exciting game modes, weapons, maps, and other features of Chaos Core.</p>
             <div class="explore">
                 <div class="card">
                     <h4>Explore Game Modes</h4>
@@ -203,9 +201,29 @@
                     <a href="all-modes.html">See All Game Modes</a>
                 </div>
                 <div class="card">
-                    <h4>Explore More</h4>
-                    <p>Weapons, maps, and other game features await you. Dive deeper into the world of Chaos Core!</p>
-                    <a href="explore-more.html">Explore More</a>
+                    <h4>Explore Weapons</h4>
+                    <p>Discover the different weapons you can use to dominate the battlefield!</p>
+                    <a href="weapons.html">See Weapons</a>
+                </div>
+                <div class="card">
+                    <h4>Explore Maps</h4>
+                    <p>Explore the diverse maps where intense battles take place.</p>
+                    <a href="maps.html">See Maps</a>
+                </div>
+                <div class="card">
+                    <h4>Explore Teams</h4>
+                    <p>Learn about the various teams you can join for strategic advantage.</p>
+                    <a href="teams.html">See Teams</a>
+                </div>
+                <div class="card">
+                    <h4>Explore Tactics</h4>
+                    <p>Get tips and strategies to improve your performance in the game.</p>
+                    <a href="tactics.html">See Tactics</a>
+                </div>
+                <div class="card">
+                    <h4>Explore Achievements</h4>
+                    <p>Track your progress and earn rewards for completing challenges.</p>
+                    <a href="achievements.html">See Achievements</a>
                 </div>
             </div>
         </section>
