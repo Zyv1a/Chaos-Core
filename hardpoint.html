@@ -5,7 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hardpoint - Chaos Core</title>
     <style>
-        /* Ajoutez ici le CSS que vous souhaitez partager avec toutes les pages */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #34495e;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #3498db;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -25,18 +105,24 @@
     <div class="container">
         <section>
             <h2>Hardpoint</h2>
-            <p>In Hardpoint, teams fight to control rotating hardpoints on the map. The longer your team controls a hardpoint, the more points you earn. The team with the most points at the end of the game wins!</p>
-            <h3>How to Play</h3>
-            <ul>
-                <li>Capture and hold hardpoints as they rotate around the map.</li>
-                <li>Protect the hardpoint from enemy teams.</li>
-                <li>The team that controls the hardpoint earns points over time.</li>
-            </ul>
-            <h3>Tips</h3>
-            <ul>
-                <li>Coordinate with your team to defend hardpoints effectively.</li>
-                <li>Stay mobile and be ready for the next rotating point.</li>
-            </ul>
+            <p>In Hardpoint, teams compete to capture and hold a single point on the map. The longer your team holds the point, the more points you earn. The first team to reach the target score wins!</p>
+            
+            <div class="card">
+                <h3>How to Play</h3>
+                <ul>
+                    <li>Capture the hardpoint by standing in the designated area.</li>
+                    <li>Defend the point to earn points for your team.</li>
+                    <li>Each point captures more over time, so stay in control!</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Tips</h3>
+                <ul>
+                    <li>Prioritize controlling the hardpoint at all times.</li>
+                    <li>Work closely with your teammates to protect the hardpoint.</li>
+                </ul>
+            </div>
         </section>
     </div>
 

@@ -5,7 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Deathmatch - Chaos Core</title>
     <style>
-        /* Ajoutez ici le CSS que vous souhaitez partager avec toutes les pages */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #34495e;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #3498db;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -25,18 +105,24 @@
     <div class="container">
         <section>
             <h2>Team Deathmatch</h2>
-            <p>In Team Deathmatch, two teams compete to eliminate each other. The first team to reach a certain number of kills wins the match.</p>
-            <h3>How to Play</h3>
-            <ul>
-                <li>Work together with your team to eliminate the opposing team.</li>
-                <li>Respawn after death and continue fighting.</li>
-                <li>Earn points by eliminating enemies.</li>
-            </ul>
-            <h3>Tips</h3>
-            <ul>
-                <li>Coordinate with teammates for effective strategies.</li>
-                <li>Use cover and be strategic when engaging enemies.</li>
-            </ul>
+            <p>In Team Deathmatch, two teams face off in an intense battle. The objective is simple: eliminate the opposing team until your team reaches the required score limit.</p>
+            
+            <div class="card">
+                <h3>How to Play</h3>
+                <ul>
+                    <li>Work with your team to eliminate the enemy players.</li>
+                    <li>The team with the most kills when the game ends wins.</li>
+                    <li>Respawn after death and continue the fight.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Tips</h3>
+                <ul>
+                    <li>Communicate with your team to ensure proper coordination.</li>
+                    <li>Utilize cover and avoid staying exposed for too long.</li>
+                </ul>
+            </div>
         </section>
     </div>
 
