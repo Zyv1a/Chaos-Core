@@ -3,99 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phantom Force - Game Modes</title>
+    <title>Phantom Force - Roblox Game Modes</title>
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Arial', sans-serif;
-            background-color: #1e1e2f;
+            background-color: #121212;
             color: #ffffff;
+            line-height: 1.6;
         }
 
         header {
-            background-color: #27293d;
+            background-color: #1f1f2e;
             padding: 20px;
-            text-align: center;
             border-bottom: 3px solid #ff5e57;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 2.5em;
-            margin: 0;
+            font-size: 1.8em;
         }
 
-        nav {
+        nav ul {
+            list-style: none;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 20px;
         }
 
-        nav a {
+        nav ul li a {
             text-decoration: none;
             color: #ffffff;
-            font-size: 1.2em;
+            font-weight: bold;
             transition: color 0.3s;
         }
 
-        nav a:hover {
+        nav ul li a:hover {
             color: #ff5e57;
         }
 
         .hero {
             background: url('https://example.com/phantom-force-background.jpg') no-repeat center center/cover;
-            height: 50vh;
+            height: 60vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
         .hero h2 {
-            font-size: 3em;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
-            border-radius: 5px;
+            font-size: 3.5em;
+            z-index: 2;
+            color: #ffffff;
         }
 
         .content {
             padding: 20px;
         }
 
-        .content h3 {
+        section {
+            margin-bottom: 40px;
+        }
+
+        .game-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1f1f2e;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .card h4 {
             color: #ff5e57;
             margin-bottom: 10px;
         }
 
-        .game-info {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: #27293d;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            min-width: 300px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card h4 {
-            margin-top: 0;
-            color: #ff5e57;
+        .card p {
+            margin-bottom: 15px;
         }
 
         .card a {
             text-decoration: none;
             color: #ffffff;
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 15px;
             background-color: #ff5e57;
+            padding: 10px 15px;
             border-radius: 5px;
+            display: inline-block;
             transition: background-color 0.3s;
         }
 
@@ -103,79 +131,81 @@
             background-color: #ff3b3b;
         }
 
-        .footer {
-            background-color: #27293d;
+        footer {
+            background-color: #1f1f2e;
             text-align: center;
-            padding: 10px;
-            margin-top: 20px;
+            padding: 15px;
             border-top: 3px solid #ff5e57;
         }
 
-        .footer p {
+        footer p {
             margin: 0;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Phantom Force Roblox</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#about">About</a>
-            <a href="#games">Games</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="container">
+            <h1>Phantom Force Roblox</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#modes">Game Modes</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div class="hero">
-        <h2>Explore All Game Modes</h2>
+        <h2>Welcome to the Battlefield</h2>
     </div>
 
     <div class="content">
         <section id="about">
             <h3>About Phantom Force</h3>
-            <p>Phantom Force is a fast-paced, action-packed Roblox game inspired by the best of first-person shooters. Dive into various game modes, level up, and dominate the battlefield!</p>
+            <p>Phantom Force is a dynamic Roblox FPS game offering intense battles and strategic gameplay. Explore diverse game modes and prove your skills on the battlefield.</p>
         </section>
 
-        <section id="games">
+        <section id="modes">
             <h3>Game Modes</h3>
-            <div class="game-info">
+            <div class="game-modes">
                 <div class="card">
                     <h4>Team Deathmatch</h4>
-                    <p>Fight with your team and achieve the highest kill count.</p>
-                    <a href="team-deathmatch.html">Learn More</a>
+                    <p>Team up and eliminate the enemy to score the highest kills.</p>
+                    <a href="team-deathmatch.html">View Details</a>
                 </div>
                 <div class="card">
                     <h4>Capture the Flag</h4>
-                    <p>Secure the enemy flag while protecting your own.</p>
-                    <a href="capture-the-flag.html">Learn More</a>
+                    <p>Steal the enemy flag and return it to your base to score points.</p>
+                    <a href="capture-the-flag.html">View Details</a>
                 </div>
                 <div class="card">
                     <h4>Free-for-All</h4>
-                    <p>Every player for themselves. Be the last one standing!</p>
-                    <a href="free-for-all.html">Learn More</a>
+                    <p>It's every player for themselves. Can you dominate the leaderboard?</p>
+                    <a href="free-for-all.html">View Details</a>
                 </div>
                 <div class="card">
                     <h4>King of the Hill</h4>
-                    <p>Control the hill and dominate the match.</p>
-                    <a href="king-of-the-hill.html">Learn More</a>
+                    <p>Control the hill and earn points to secure victory.</p>
+                    <a href="king-of-the-hill.html">View Details</a>
                 </div>
                 <div class="card">
                     <h4>Hardpoint</h4>
-                    <p>Capture and defend rotating objectives to earn points.</p>
-                    <a href="hardpoint.html">Learn More</a>
+                    <p>Capture and hold objectives to earn points for your team.</p>
+                    <a href="hardpoint.html">View Details</a>
                 </div>
                 <div class="card">
                     <h4>Domination</h4>
-                    <p>Capture and hold key areas to score points for your team.</p>
-                    <a href="domination.html">Learn More</a>
+                    <p>Capture and defend key areas to dominate the battlefield.</p>
+                    <a href="domination.html">View Details</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Phantom Force Roblox. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2024 Phantom Force. All rights reserved.</p>
     </footer>
 </body>
 </html>
