@@ -65,28 +65,6 @@
             width: 100%;
         }
 
-        .hero {
-            background: linear-gradient(135deg, #161b22, #0d1117);
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            color: #c9d1d9;
-            z-index: 2;
-            padding: 10px 20px;
-            border: 2px solid #238636;
-            border-radius: 10px;
-            background: rgba(35, 134, 54, 0.1);
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -102,6 +80,24 @@
             margin-bottom: 20px;
             color: #238636;
             text-align: center;
+        }
+
+        .definition {
+            background: linear-gradient(135deg, #161b22, #0d1117);
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .definition h2 {
+            font-size: 2.5rem;
+            color: #c9d1d9;
+            z-index: 2;
+            padding: 10px 20px;
+            border: 2px solid #238636;
+            border-radius: 10px;
+            background: rgba(35, 134, 54, 0.1);
         }
 
         .explore {
@@ -186,11 +182,13 @@
         </nav>
     </header>
 
-    <div class="hero">
-        <h2>Embrace the Shadows</h2>
-    </div>
-
     <div class="container">
+        <!-- Definition of the game -->
+        <section class="definition">
+            <h2>Chaos Core: The Ultimate FPS Experience</h2>
+            <p>Chaos Core is an intense first-person shooter (FPS) game available on Roblox. Featuring a variety of game modes, diverse weapons, tactical strategies, and engaging maps, players can immerse themselves in thrilling battles. Whether you're working as a team or going solo, every moment in Chaos Core challenges your skills and strategy. Get ready for epic combat!</p>
+        </section>
+
         <section id="about">
             <h3 class="section-title">Explore All Game Modes & More</h3>
             <p>Discover all the exciting game modes, weapons, maps, and other features of Chaos Core.</p>
