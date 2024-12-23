@@ -170,6 +170,14 @@
                 opacity: 1;
             }
         }
+
+        .unlocked {
+            background-color: #2ea043;
+        }
+
+        .locked {
+            background-color: #8b949e;
+        }
     </style>
 </head>
 <body>
@@ -193,38 +201,8 @@
 
         <section>
             <h3 class="section-title">List of Achievements</h3>
-            <div class="explore">
-                <!-- Achievement Cards -->
-                <div class="card">
-                    <h4>First Kill</h4>
-                    <p>Earn your first kill in the game.</p>
-                    <a href="#">Unlock</a>
-                </div>
-                <div class="card">
-                    <h4>Team Player</h4>
-                    <p>Complete a match with at least 5 team assists.</p>
-                    <a href="#">Unlock</a>
-                </div>
-                <div class="card">
-                    <h4>Flag Capturer</h4>
-                    <p>Capture 10 flags in Capture the Flag mode.</p>
-                    <a href="#">Unlock</a>
-                </div>
-                <div class="card">
-                    <h4>Dominant Force</h4>
-                    <p>Dominate 10 matches in Domination mode.</p>
-                    <a href="#">Unlock</a>
-                </div>
-                <div class="card">
-                    <h4>King of the Hill</h4>
-                    <p>Achieve victory in King of the Hill mode 5 times.</p>
-                    <a href="#">Unlock</a>
-                </div>
-                <div class="card">
-                    <h4>Free-for-All Champion</h4>
-                    <p>Win 3 Free-for-All matches.</p>
-                    <a href="#">Unlock</a>
-                </div>
+            <div class="explore" id="achievements-list">
+                <!-- Achievement Cards will be inserted here -->
             </div>
         </section>
 
@@ -242,5 +220,50 @@
     <footer>
         <p>&copy; 2024 Chaos Core. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Simulating player badge data
+        const playerBadges = {
+            firstKill: true,
+            teamPlayer: false,
+            flagCapturer: true,
+            dominantForce: false,
+            kingOfTheHill: true,
+            freeForAllChampion: false
+        };
+
+        // Achievement data
+        const achievements = [
+            { id: 'firstKill', title: 'First Kill', description: 'Earn your first kill in the game.' },
+            { id: 'teamPlayer', title: 'Team Player', description: 'Complete a match with at least 5 team assists.' },
+            { id: 'flagCapturer', title: 'Flag Capturer', description: 'Capture 10 flags in Capture the Flag mode.' },
+            { id: 'dominantForce', title: 'Dominant Force', description: 'Dominate 10 matches in Domination mode.' },
+            { id: 'kingOfTheHill', title: 'King of the Hill', description: 'Achieve victory in King of the Hill mode 5 times.' },
+            { id: 'freeForAllChampion', title: 'Free-for-All Champion', description: 'Win 3 Free-for-All matches.' }
+        ];
+
+        const achievementsListContainer = document.getElementById('achievements-list');
+
+        // Function to render achievements
+        function renderAchievements() {
+            achievements.forEach(achievement => {
+                const isUnlocked = playerBadges[achievement.id];
+                const cardClass = isUnlocked ? 'card unlocked' : 'card locked';
+                const buttonText = isUnlocked ? 'Unlocked' : 'Locked';
+
+                const cardHtml = `
+                    <div class="${cardClass}">
+                        <h4>${achievement.title}</h4>
+                        <p>${achievement.description}</p>
+                        <a href="#">${buttonText}</a>
+                    </div>
+                `;
+                achievementsListContainer.innerHTML += cardHtml;
+            });
+        }
+
+        // Call the function to render achievements
+        renderAchievements();
+    </script>
 </body>
 </html>
