@@ -82,10 +82,10 @@
             text-align: center;
         }
 
-        .game-modes {
+        .game-modes, .extras {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Augmentation de la taille des cartes */
-            gap: 30px; /* Augmenter l'espacement */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
         .card {
@@ -93,7 +93,7 @@
             border: 1px solid #238636;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            padding: 30px; /* Augmenter le padding */
+            padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -106,7 +106,7 @@
         }
 
         .card h4 {
-            font-size: 1.8rem; /* Augmenter la taille du titre */
+            font-size: 1.8rem;
             margin-bottom: 10px;
             color: #c9d1d9;
         }
@@ -120,7 +120,7 @@
             text-decoration: none;
             color: #0d1117;
             background: #238636;
-            padding: 12px 20px; /* Augmenter le padding */
+            padding: 12px 20px;
             border-radius: 5px;
             font-weight: bold;
             transition: background 0.3s, transform 0.2s;
@@ -161,37 +161,33 @@
         </section>
 
         <section id="modes">
-            <h3 class="section-title">Game Modes</h3>
+            <h3 class="section-title">Explore the Game Modes</h3>
             <div class="game-modes">
                 <div class="card">
-                    <h4>Team Deathmatch</h4>
-                    <p>Eliminate the opposing team to secure victory.</p>
-                    <a href="team-deathmatch.html">Learn More</a>
+                    <h4>All Game Modes</h4>
+                    <p>Discover all the game modes of Chaos Core. Explore Team Deathmatch, Capture the Flag, Free-for-All, King of the Hill, Hardpoint, and Domination.</p>
+                    <a href="all-modes.html">View All Modes</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="extras">
+            <h3 class="section-title">Explore More</h3>
+            <div class="extras">
+                <div class="card">
+                    <h4>Maps</h4>
+                    <p>Explore the different maps in Chaos Core for each game mode. From urban streets to open fields, each map offers unique challenges.</p>
+                    <a href="maps.html">View Maps</a>
                 </div>
                 <div class="card">
-                    <h4>Capture the Flag</h4>
-                    <p>Steal the enemy flag and return it to your base.</p>
-                    <a href="capture-the-flag.html">Learn More</a>
+                    <h4>Weapons</h4>
+                    <p>Check out the diverse arsenal available in Chaos Core. From rifles to explosives, arm yourself for any battle!</p>
+                    <a href="weapons.html">View Weapons</a>
                 </div>
                 <div class="card">
-                    <h4>Free-for-All</h4>
-                    <p>It's every player for themselves. Show your dominance!</p>
-                    <a href="free-for-all.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>King of the Hill</h4>
-                    <p>Control the hill to gain points for your team.</p>
-                    <a href="king-of-the-hill.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>Hardpoint</h4>
-                    <p>Secure rotating objectives to earn points.</p>
-                    <a href="hardpoint.html">Learn More</a>
-                </div>
-                <div class="card">
-                    <h4>Domination</h4>
-                    <p>Capture and hold zones to dominate the battlefield.</p>
-                    <a href="domination.html">Learn More</a>
+                    <h4>Rankings</h4>
+                    <p>See where you stand among the top players. View the global leaderboards and see the best of the best.</p>
+                    <a href="rankings.html">View Rankings</a>
                 </div>
             </div>
         </section>
