@@ -5,86 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capture the Flag - Chaos Core</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         header {
-            background-color: #2c3e50;
-            padding: 20px;
-            color: white;
+            background: #161b22;
+            padding: 20px 0;
+            border-bottom: 2px solid #238636;
             text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #238636;
+        }
+
+        nav {
+            margin-top: 10px;
         }
 
         nav a {
-            color: #ecf0f1;
-            margin: 0 10px;
             text-decoration: none;
+            color: #c9d1d9;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #238636;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
         }
 
         nav a:hover {
-            color: #3498db;
+            color: #238636;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .container {
-            padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        h2 {
-            color: #2c3e50;
-            font-size: 2.5em;
-        }
-
-        h3 {
-            font-size: 1.8em;
-            color: #34495e;
-        }
-
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            padding: 20px;
         }
 
         section {
-            background-color: white;
-            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #238636;
+            text-align: center;
+        }
+
+        .definition {
+            background: linear-gradient(135deg, #161b22, #0d1117);
+            padding: 50px 20px;
+            text-align: center;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
         }
 
-        .card {
-            background-color: #3498db;
+        .definition h2 {
+            font-size: 2.5rem;
+            color: #c9d1d9;
+            z-index: 2;
+            padding: 10px 20px;
+            border: 2px solid #238636;
+            border-radius: 10px;
+            background: rgba(35, 134, 54, 0.1);
+        }
+
+        footer {
+            background: #161b22;
             padding: 20px;
-            border-radius: 8px;
-            color: white;
             text-align: center;
-            margin-bottom: 30px;
+            border-top: 2px solid #238636;
         }
 
-        .card h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 1.2em;
+        footer p {
+            font-size: 0.9rem;
+            color: #8b949e;
         }
     </style>
 </head>
@@ -103,26 +128,18 @@
     </header>
 
     <div class="container">
-        <section>
+        <section class="definition">
             <h2>Capture the Flag</h2>
-            <p>In this mode, two teams fight to capture the opposing team's flag and return it to their base. The first team to capture the flag a set number of times wins the match.</p>
-            
-            <div class="card">
-                <h3>How to Play</h3>
-                <ul>
-                    <li>Steal the enemy flag while defending your own.</li>
-                    <li>Work together with your team to prevent the enemy from capturing your flag.</li>
-                    <li>Score points by returning the flag to your base.</li>
-                </ul>
-            </div>
+            <p>In this mode, your goal is to capture the enemy’s flag and return it to your base, while defending your own flag from being captured. Teamwork is key!</p>
+        </section>
 
-            <div class="card">
-                <h3>Tips</h3>
-                <ul>
-                    <li>Coordinate with your team for both offense and defense.</li>
-                    <li>Use vehicles to quickly move across the map.</li>
-                </ul>
-            </div>
+        <section>
+            <h3 class="section-title">How to Play</h3>
+            <ul>
+                <li>Capture the enemy’s flag and return it to your base.</li>
+                <li>Protect your flag from being captured by the enemy team.</li>
+                <li>Work as a team to strategize your offense and defense.</li>
+            </ul>
         </section>
     </div>
 
