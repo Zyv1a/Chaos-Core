@@ -102,7 +102,7 @@
 
         .explore {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-top: 20px;
         }
@@ -200,7 +200,8 @@
         </section>
 
         <section>
-            <h3 class="section-title">List of Achievements</h3>
+            <h3 class="section-title">Your Achievements</h3>
+            <div id="login-status"></div>
             <div class="explore" id="achievements-list">
                 <!-- Achievement Cards will be inserted here -->
             </div>
@@ -222,32 +223,35 @@
     </footer>
 
     <script>
-        // Simulating player badge data
-        const playerBadges = {
-            firstKill: true,
-            teamPlayer: false,
-            flagCapturer: true,
-            dominantForce: false,
-            kingOfTheHill: true,
-            freeForAllChampion: false
-        };
+        // Vérification du statut de connexion via Roblox
+        async function checkLoginStatus() {
+            const response = await fetch('/api/checkLoginStatus');
+            const data = await response.json();
 
-        // Achievement data
-        const achievements = [
-            { id: 'firstKill', title: 'First Kill', description: 'Earn your first kill in the game.' },
-            { id: 'teamPlayer', title: 'Team Player', description: 'Complete a match with at least 5 team assists.' },
-            { id: 'flagCapturer', title: 'Flag Capturer', description: 'Capture 10 flags in Capture the Flag mode.' },
-            { id: 'dominantForce', title: 'Dominant Force', description: 'Dominate 10 matches in Domination mode.' },
-            { id: 'kingOfTheHill', title: 'King of the Hill', description: 'Achieve victory in King of the Hill mode 5 times.' },
-            { id: 'freeForAllChampion', title: 'Free-for-All Champion', description: 'Win 3 Free-for-All matches.' }
-        ];
+            if (data.loggedIn) {
+                document.getElementById('login-status').innerHTML = `<p>Welcome, ${data.username}!</p>`;
+                renderAchievements(data.badges);
+            } else {
+                document.getElementById('login-status').innerHTML = `<p><a href="/login">Login with Roblox</a></p>`;
+            }
+        }
 
-        const achievementsListContainer = document.getElementById('achievements-list');
+        // Fonction pour afficher les badges et les achievements
+        function renderAchievements(badges) {
+            const achievements = [
+                { id: 'firstKill', title: 'First Kill', description: 'Earn your first kill in the game.' },
+                { id: 'teamPlayer', title: 'Team Player', description: 'Complete a match with at least 5 team assists.' },
+                { id: 'flagCapturer', title: 'Flag Capturer', description: 'Capture 10 flags in Capture the Flag mode.' },
+                { id: 'dominantForce', title: 'Dominant Force', description: 'Dominate 10 matches in Domination mode.' },
+                { id: 'kingOfTheHill', title: 'King of the Hill', description: 'Achieve victory in King of the Hill mode 5 times.' },
+                { id: 'freeForAllChampion', title: 'Free-for-All Champion', description: 'Win 3 Free-for-All matches.' }
+            ];
 
-        // Function to render achievements
-        function renderAchievements() {
+            const achievementsListContainer = document.getElementById('achievements-list');
+            achievementsListContainer.innerHTML = '';
+
             achievements.forEach(achievement => {
-                const isUnlocked = playerBadges[achievement.id];
+                const isUnlocked = badges.includes(achievement.id);
                 const cardClass = isUnlocked ? 'card unlocked' : 'card locked';
                 const buttonText = isUnlocked ? 'Unlocked' : 'Locked';
 
@@ -262,8 +266,10 @@
             });
         }
 
-        // Call the function to render achievements
-        renderAchievements();
+        // Vérifier le statut de connexion à l'ouverture de la page
+        window.onload = function() {
+            checkLoginStatus();
+        };
     </script>
 </body>
 </html>

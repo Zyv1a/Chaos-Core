@@ -1,48 +1,75 @@
 const express = require('express');
 const axios = require('axios');
+const dotenv = require('dotenv');
 const app = express();
 const port = 3000;
 
-// Exemple de fonction pour récupérer les badges du joueur
-async function getPlayerBadges(playerId) {
-    try {
-        // Remplacer par l'URL de l'API de Roblox pour récupérer les badges
-        const response = await axios.get(`https://api.roblox.com/users/${playerId}/badges`);
-        
-        // Simuler un tableau d'achievements obtenus
-        // Ce tableau doit être modifié en fonction des badges récupérés via Roblox
-        const badges = response.data;
-        
-        // Retourner un tableau de badges avec un ID pour chaque achievement
-        return {
-            firstKill: badges.includes(12345), // Exemple d'ID de badge pour 'First Kill'
-            teamPlayer: badges.includes(67890), // ID pour 'Team Player'
-            flagCapturer: badges.includes(11223), // ID pour 'Flag Capturer'
-            dominantForce: badges.includes(44556), // ID pour 'Dominant Force'
-            kingOfTheHill: badges.includes(78901), // ID pour 'King of the Hill'
-            freeForAllChampion: badges.includes(23456) // ID pour 'Free-for-All Champion'
-        };
-    } catch (error) {
-        console.error('Erreur de récupération des badges:', error);
-        return {}; // Retourner un objet vide en cas d'erreur
-    }
-}
+// Charger les variables d'environnement
+dotenv.config();
 
-// Route pour récupérer les achievements du joueur
-app.get('/achievements', async (req, res) => {
-    const playerId = req.query.playerId; // ID du joueur passé comme paramètre dans l'URL
-    if (!playerId) {
-        return res.status(400).json({ error: 'Player ID is required' });
-    }
+// Variables pour l'authentification Roblox
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = 'http://localhost:3000/callback';
+const ROBLOX_API_URL = 'https://api.roblox.com';
 
-    const playerBadges = await getPlayerBadges(playerId);
-    res.json(playerBadges);
+// Middleware pour parser les données POST
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Route pour démarrer l'authentification avec Roblox
+app.get('/login', (req, res) => {
+    const authUrl = `https://apis.roblox.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid`;
+    res.redirect(authUrl);
 });
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static('public'));
+// Route de callback après l'authentification avec Roblox
+app.get('/callback', async (req, res) => {
+    const code = req.query.code;
+    
+    // Echange du code contre un token d'accès
+    try {
+        const response = await axios.post('https://apis.roblox.com/oauth2/token', null, {
+            params: {
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                code,
+                redirect_uri: REDIRECT_URI,
+                grant_type: 'authorization_code',
+            },
+        });
 
-// Démarrer le serveur
+        const accessToken = response.data.access_token;
+        const userInfo = await getUserInfo(accessToken);
+        const badges = await getUserBadges(userInfo.id);
+
+        res.json({
+            userInfo,
+            badges,
+        });
+
+    } catch (error) {
+        console.error('Error during OAuth flow:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Fonction pour récupérer les informations utilisateur
+async function getUserInfo(accessToken) {
+    const response = await axios.get('https://apis.roblox.com/v1/users/self', {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+    return response.data;
+}
+
+// Fonction pour récupérer les badges de l'utilisateur
+async function getUserBadges(userId) {
+    const response = await axios.get(`https://users.roblox.com/v1/users/${userId}/badges`);
+    return response.data.data;
+}
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
