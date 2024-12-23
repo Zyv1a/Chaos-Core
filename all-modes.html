@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chaos Core - Home</title>
+    <title>Chaos Core - All Game Modes</title>
     <style>
         * {
             margin: 0;
@@ -65,28 +65,6 @@
             width: 100%;
         }
 
-        .hero {
-            background: linear-gradient(135deg, #161b22, #0d1117);
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            color: #c9d1d9;
-            z-index: 2;
-            padding: 10px 20px;
-            border: 2px solid #238636;
-            border-radius: 10px;
-            background: rgba(35, 134, 54, 0.1);
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,11 +82,10 @@
             text-align: center;
         }
 
-        .explore {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+        .game-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
         .card {
@@ -121,8 +98,6 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-            max-width: 400px;
         }
 
         .card:hover {
@@ -167,20 +142,11 @@
             font-size: 0.9rem;
             color: #8b949e;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Chaos Core</h1>
+        <h1>Chaos Core - All Game Modes</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="#about">About</a>
@@ -188,28 +154,51 @@
         </nav>
     </header>
 
-    <div class="hero">
-        <h2>Embrace the Shadows</h2>
-    </div>
-
     <div class="container">
         <section id="about">
-            <h3 class="section-title">Explore All Game Modes & More</h3>
-            <p>Discover all the game modes in Chaos Core, including intense team battles, strategic challenges, and more. Explore weapons, maps, and additional features to enhance your experience.</p>
-            <div class="explore">
+            <h3 class="section-title">All Game Modes</h3>
+            <p>Explore all the exciting game modes available in Chaos Core! Whether you prefer tactical team-based action or chaotic free-for-alls, there's a mode for everyone.</p>
+        </section>
+
+        <section id="modes">
+            <div class="game-modes">
                 <div class="card">
-                    <h4>Explore Game Modes</h4>
-                    <p>Check out all the exciting game modes available in Chaos Core!</p>
-                    <a href="all-modes.html">See All Game Modes</a>
+                    <h4>Team Deathmatch</h4>
+                    <p>Fight in teams against each other. The first team to reach the kill limit wins!</p>
+                    <a href="team-deathmatch.html">Learn More</a>
                 </div>
+
                 <div class="card">
-                    <h4>Explore More</h4>
-                    <p>Weapons, maps, and other game features await you. Dive deeper into the world of Chaos Core!</p>
-                    <a href="explore-more.html">Explore More</a>
+                    <h4>Capture the Flag</h4>
+                    <p>Steal the enemy’s flag and return it to your base while defending your own flag.</p>
+                    <a href="capture-the-flag.html">Learn More</a>
+                </div>
+
+                <div class="card">
+                    <h4>Free-for-All</h4>
+                    <p>It's a free-for-all battle where everyone is against everyone. Can you be the last one standing?</p>
+                    <a href="free-for-all.html">Learn More</a>
+                </div>
+
+                <div class="card">
+                    <h4>King of the Hill</h4>
+                    <p>Control the hill for as long as you can. The team with the longest time on the hill wins!</p>
+                    <a href="king-of-the-hill.html">Learn More</a>
+                </div>
+
+                <div class="card">
+                    <h4>Hardpoint</h4>
+                    <p>Secure rotating hardpoints around the map to score points for your team.</p>
+                    <a href="hardpoint.html">Learn More</a>
+                </div>
+
+                <div class="card">
+                    <h4>Domination</h4>
+                    <p>Capture and hold strategic points on the map to earn points for your team.</p>
+                    <a href="domination.html">Learn More</a>
                 </div>
             </div>
         </section>
-
     </div>
 
     <footer>
