@@ -1,15 +1,16 @@
 <?php
-// Vérifier si le formulaire est soumis
+// Vérification que le formulaire est soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $form_type = htmlspecialchars($_POST['form_type']);
     $email = htmlspecialchars($_POST['email']);
 
+    // Créer le sujet et le message en fonction du type de formulaire
     if ($form_type == 'recrutement') {
         $role = htmlspecialchars($_POST['role']);
         $experience = htmlspecialchars($_POST['experience']);
         $subject = "Recrutement - $role";
-        $message = "Rôle recherché: $role\nExperience: $experience\nEmail: $email";
+        $message = "Rôle recherché: $role\nExpérience: $experience\nEmail: $email";
     } elseif ($form_type == 'suggestion_bug') {
         $issue_type = htmlspecialchars($_POST['issue_type']);
         $details = htmlspecialchars($_POST['details']);
@@ -17,16 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "$issue_type: $details\nEmail: $email";
     }
 
-    // Définir l'email de destination
-    $to = "votre-email@example.com"; // Remplacez par l'email du staff
+    // L'email du destinataire (staff)
+    $to = "votre-email@example.com"; // Remplacez par l'adresse email du staff
 
-    // En-têtes de l'email
+    // Définir les en-têtes de l'email
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
 
-    // Envoyer l'email
+    // Envoi de l'email
     if (mail($to, $subject, $message, $headers)) {
-        // Redirection vers la page précédente
+        // Redirection avec message de confirmation
         echo "<script>
                 alert('Votre message a été envoyé au staff.');
                 window.history.back();
