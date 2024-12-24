@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Chaos Core</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #161b22;
+            padding: 20px 0;
+            border-bottom: 2px solid #238636;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #238636;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #c9d1d9;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #238636;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: #238636;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #238636;
+            text-align: center;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .form-box {
+            background: #161b22;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #238636;
+            width: 45%;
+        }
+
+        .form-box h3 {
+            color: #238636;
+            font-size: 1.8rem;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #8b949e;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            background: #0d1117;
+            border: 1px solid #238636;
+            color: #c9d1d9;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #238636;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2ea043;
+        }
+
+        footer {
+            background: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #238636;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chaos Core</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a> <!-- Lien vers la page Contact -->
+        </nav>
+    </header>
+
+    <div class="container">
+        <section>
+            <h3 class="section-title">Contact Us</h3>
+            <p>We'd love to hear from you! Choose an option below to reach out.</p>
+
+            <div class="form-container">
+                <!-- Formulaire de recrutement -->
+                <div class="form-box">
+                    <h3>Recrutement</h3>
+                    <form action="/submit-recruitment" method="POST">
+                        <label for="name">Votre Nom:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="email">Votre Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="message">Pourquoi voulez-vous nous rejoindre?</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+
+                <!-- Formulaire de suggestions et bugs -->
+                <div class="form-box">
+                    <h3>Suggestions & Bugs</h3>
+                    <form action="/submit-suggestions-bugs" method="POST">
+                        <label for="name2">Votre Nom:</label>
+                        <input type="text" id="name2" name="name" required>
+
+                        <label for="email2">Votre Email:</label>
+                        <input type="email" id="email2" name="email" required>
+
+                        <label for="feedback">Votre suggestion ou rapport de bug:</label>
+                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Chaos Core. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
