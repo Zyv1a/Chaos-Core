@@ -152,20 +152,23 @@
     </style>
     <script>
         function showAdditionalQuestions() {
-            const category = document.getElementById("category").value;
-            const additionalQuestions = document.querySelectorAll(".additional-questions");
+    const category = document.getElementById("category").value;
+    const additionalQuestions = document.querySelectorAll(".additional-questions");
 
-            // Cacher toutes les questions supplémentaires
-            additionalQuestions.forEach(question => question.style.display = "none");
+    // Cacher toutes les questions supplémentaires
+    additionalQuestions.forEach(question => question.style.display = "none");
 
-            // Afficher les questions pertinentes
-            const selectedQuestions = document.getElementById(`${category}-questions`);
-            if (selectedQuestions) {
-                selectedQuestions.style.display = "block";
-            }
+    // Afficher les questions pertinentes
+    if (category) {
+        const selectedQuestions = document.getElementById(`${category.toLowerCase()}-questions`);
+        if (selectedQuestions) {
+            selectedQuestions.style.display = "block";
         }
-    </script>
+    }
+}
+</script>
 </head>
+
 <body>
     <header>
         <h1>Chaos Core</h1>
@@ -202,7 +205,8 @@
                         </select>
 
                         <!-- Sections dynamiques -->
-                        <div id="scripteur-questions" class="additional-questions">
+                        <option value="Scripteur">Scripteur</option>
+                            <div id="scripteur-questions" class="additional-questions">...</div>
                             <label for="experience">Quel(s) langage(s) de programmation maîtrisez-vous ?</label>
                             <textarea id="experience" name="experience" rows="4" required></textarea>
 
