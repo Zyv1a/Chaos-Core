@@ -24,7 +24,6 @@
             padding: 20px 0;
             border-bottom: 2px solid #238636;
             text-align: center;
-            position: relative;
         }
 
         header h1 {
@@ -34,35 +33,51 @@
         }
 
         nav {
-            display: flex;
-            justify-content: center;
             margin-top: 10px;
         }
 
         nav a {
-            color: #c9d1d9;
             text-decoration: none;
+            color: #c9d1d9;
             margin: 0 15px;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #238636;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
         }
 
         nav a:hover {
-            background-color: #238636;
-            transform: scale(1.05);
+            color: #238636;
         }
 
-        nav a:focus {
-            outline: none;
+        nav a:hover::after {
+            width: 100%;
         }
 
         .container {
-            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1200px;
             margin: 40px auto;
             padding: 20px;
+        }
+
+        .form-container {
+            flex: 1;
             background: #161b22;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -106,10 +121,6 @@
             transform: scale(1.05);
         }
 
-        .hidden {
-            display: none;
-        }
-
         footer {
             background: #161b22;
             padding: 20px;
@@ -122,13 +133,16 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
+        /* Styles for the hidden form sections */
+        .hidden {
+            display: none;
+        }
+
+        /* Media Query for responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -148,52 +162,61 @@
     </header>
 
     <div class="container">
-        <h2 class="form-title">Contact Form</h2>
+        <!-- Left Section: Recruitment Form -->
+        <div class="form-container">
+            <h2 class="form-title">Recruitment Form</h2>
 
-        <form action="https://formspree.io/f/xannnelr" method="POST">
-            
-            <label for="form_type">Form Type:</label>
-            <select name="form_type" id="form_type" required onchange="toggleFormFields()">
-                <option value="">Select a form type</option>
-                <option value="recruitment">Recruitment</option>
-                <option value="suggestion_bug">Suggestions and Bugs</option>
-            </select>
-
-            <!-- Recruitment Form -->
-            <div id="recruitment_form" class="hidden">
-                <label for="role">What role are you applying for?</label>
-                <select name="role" id="role" required>
-                    <option value="">Select a role</option>
-                    <option value="Scripter">Scripter</option>
-                    <option value="Modeler">Modeler</option>
-                    <option value="Designer">Designer</option>
-                    <option value="Tester">Tester</option>
-                    <option value="Administrator">Administrator</option>
+            <form action="https://formspree.io/f/xannnelr" method="POST">
+                <label for="form_type">Form Type:</label>
+                <select name="form_type" id="form_type" required onchange="toggleFormFields()">
+                    <option value="">Select a form type</option>
+                    <option value="recruitment">Recruitment</option>
+                    <option value="suggestion_bug">Suggestions and Bugs</option>
                 </select>
 
-                <label for="experience">Describe your experience:</label>
-                <textarea name="experience" id="experience" rows="4" required></textarea>
-            </div>
+                <!-- Recruitment Form -->
+                <div id="recruitment_form" class="hidden">
+                    <label for="role">What role are you applying for?</label>
+                    <select name="role" id="role" required>
+                        <option value="">Select a role</option>
+                        <option value="Scripter">Scripter</option>
+                        <option value="Modeler">Modeler</option>
+                        <option value="Designer">Designer</option>
+                        <option value="Tester">Tester</option>
+                        <option value="Administrator">Administrator</option>
+                    </select>
 
-            <!-- Suggestions and Bugs Form -->
-            <div id="suggestion_bug_form" class="hidden">
-                <label for="issue_type">Type of Submission:</label>
-                <select name="issue_type" id="issue_type" required>
-                    <option value="">Select type</option>
-                    <option value="Suggestion">Suggestion</option>
-                    <option value="Bug">Bug</option>
-                </select>
+                    <label for="experience">Describe your experience:</label>
+                    <textarea name="experience" id="experience" rows="4" required></textarea>
+                </div>
+            </form>
+        </div>
 
-                <label for="details">Details of suggestion or bug:</label>
-                <textarea name="details" id="details" required></textarea>
-            </div>
+        <!-- Right Section: Suggestions and Bugs Form -->
+        <div class="form-container">
+            <h2 class="form-title">Suggestions and Bugs</h2>
 
-            <!-- Common Email Field -->
-            <label for="email">Your Email:</label>
-            <input type="email" name="email" id="email" required />
+            <form action="https://formspree.io/f/xannnelr" method="POST">
+                <!-- Suggestions and Bugs Form -->
+                <div id="suggestion_bug_form" class="hidden">
+                    <label for="issue_type">Type of Submission:</label>
+                    <select name="issue_type" id="issue_type" required>
+                        <option value="">Select type</option>
+                        <option value="Suggestion">Suggestion</option>
+                        <option value="Bug">Bug</option>
+                    </select>
 
-            <button type="submit">Send</button>
-        </form>
+                    <label for="details">Details of suggestion or bug:</label>
+                    <textarea name="details" id="details" required></textarea>
+                </div>
+
+                <!-- Common Email Field -->
+                <label for="email">Your Email:</label>
+                <input type="email" name="email" id="email" required />
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
     </div>
 
     <footer>
