@@ -29,13 +29,13 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        input[type="submit"] {
+        input[type="submit"], button {
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
         }
-        input[type="submit"]:hover {
+        input[type="submit"]:hover, button:hover {
             background-color: #45a049;
         }
         .hidden {
@@ -47,7 +47,7 @@
 
     <h2>Formulaire de Contact</h2>
 
-    <form action="send-email.php" method="POST">
+    <form action="https://formspree.io/f/xannnelr" method="POST">
         
         <label for="form_type">Type de Formulaire :</label>
         <select name="form_type" id="form_type" required onchange="toggleFormFields()">
@@ -75,21 +75,21 @@
         <!-- Formulaire de suggestions et bugs -->
         <div id="suggestion_bug_form" class="hidden">
             <label for="issue_type">Type de soumission :</label>
-            <select name="issue_type" id="issue_type" required>
+            <select name="issue_type" id="issue_type">
                 <option value="">Sélectionnez le type</option>
                 <option value="Suggestion">Suggestion</option>
                 <option value="Bug">Bug</option>
             </select>
 
             <label for="details">Détails de la suggestion ou du bug :</label>
-            <textarea name="details" id="details" rows="4" required></textarea>
+            <textarea name="details" id="details"></textarea>
         </div>
 
         <!-- Champ email commun pour tous les types -->
         <label for="email">Votre Email :</label>
         <input type="email" name="email" id="email" required />
 
-        <input type="submit" value="Envoyer" />
+        <button type="submit">Envoyer</button>
     </form>
 
     <script>
@@ -98,16 +98,37 @@
             const formType = document.getElementById('form_type').value;
             const recrutementForm = document.getElementById('recrutement_form');
             const suggestionBugForm = document.getElementById('suggestion_bug_form');
-            
+            const issueTypeField = document.getElementById('issue_type');
+            const detailsField = document.getElementById('details');
+
             if (formType === 'recrutement') {
                 recrutementForm.classList.remove('hidden');
                 suggestionBugForm.classList.add('hidden');
+                // Rendre les champs requis pour le recrutement
+                document.querySelector('select[name="role"]').setAttribute('required', 'required');
+                document.querySelector('textarea[name="experience"]').setAttribute('required', 'required');
+                
+                // Enlever les attributs "required" des champs de suggestion/bug
+                issueTypeField.removeAttribute('required');
+                detailsField.removeAttribute('required');
             } else if (formType === 'suggestion_bug') {
                 suggestionBugForm.classList.remove('hidden');
                 recrutementForm.classList.add('hidden');
+                // Rendre les champs requis pour suggestion/bug
+                issueTypeField.setAttribute('required', 'required');
+                detailsField.setAttribute('required', 'required');
+                
+                // Enlever les attributs "required" des champs de recrutement
+                document.querySelector('select[name="role"]').removeAttribute('required');
+                document.querySelector('textarea[name="experience"]').removeAttribute('required');
             } else {
                 recrutementForm.classList.add('hidden');
                 suggestionBugForm.classList.add('hidden');
+                // Enlever les attributs "required" des deux formulaires
+                document.querySelector('select[name="role"]').removeAttribute('required');
+                document.querySelector('textarea[name="experience"]').removeAttribute('required');
+                issueTypeField.removeAttribute('required');
+                detailsField.removeAttribute('required');
             }
         }
     </script>
