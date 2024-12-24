@@ -119,21 +119,6 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .card.locked {
-            background: #333;
-            border-color: #8b949e;
-            color: #8b949e;
-        }
-
-        .card.locked::before {
-            content: '\uD83D\uDD12'; /* Unicode for lock icon */
-            font-size: 2rem;
-            color: #8b949e;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 6px 15px rgba(35, 134, 54, 0.5);
@@ -147,21 +132,6 @@
         .card p {
             margin-bottom: 15px;
             color: #8b949e;
-        }
-
-        .card a {
-            text-decoration: none;
-            color: #0d1117;
-            background: #238636;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .card.locked a {
-            background: #8b949e;
-            pointer-events: none; /* Disable click on locked achievements */
         }
 
         footer {
@@ -193,75 +163,42 @@
     <div class="container">
         <section class="definition">
             <h2>Achievements</h2>
-            <p>In Chaos Core, you can earn various achievements by completing in-game challenges. These achievements will showcase your skills and progress, unlocking rewards and bragging rights!</p>
+            <p>In Chaos Core, you can earn various achievements by completing in-game challenges. Showcase your skills and progress here!</p>
         </section>
 
         <section>
-            <h3 class="section-title">Your Achievements</h3>
-            <div id="login-status"></div>
-            <div class="explore" id="achievements-list">
-                <!-- Achievement Cards will be inserted here -->
+            <h3 class="section-title">All Achievements</h3>
+            <div class="explore">
+                <div class="card">
+                    <h4>First Kill</h4>
+                    <p>Earn your first kill in the game.</p>
+                </div>
+                <div class="card">
+                    <h4>Team Player</h4>
+                    <p>Complete a match with at least 5 team assists.</p>
+                </div>
+                <div class="card">
+                    <h4>Flag Capturer</h4>
+                    <p>Capture 10 flags in Capture the Flag mode.</p>
+                </div>
+                <div class="card">
+                    <h4>Dominant Force</h4>
+                    <p>Dominate 10 matches in Domination mode.</p>
+                </div>
+                <div class="card">
+                    <h4>King of the Hill</h4>
+                    <p>Achieve victory in King of the Hill mode 5 times.</p>
+                </div>
+                <div class="card">
+                    <h4>Free-for-All Champion</h4>
+                    <p>Win 3 Free-for-All matches.</p>
+                </div>
             </div>
-        </section>
-
-        <section>
-            <h3 class="section-title">How Achievements Work</h3>
-            <ul>
-                <li>Achievements are unlocked by completing specific challenges in the game.</li>
-                <li>They can be tracked through your player profile.</li>
-                <li>Some achievements unlock in-game rewards, such as skins, badges, or XP boosts.</li>
-                <li>Keep an eye on the leaderboard to see who has unlocked the most achievements!</li>
-            </ul>
         </section>
     </div>
 
     <footer>
         <p>&copy; 2024 Chaos Core. All rights reserved.</p>
     </footer>
-
-    <script>
-        async function checkLoginStatus() {
-            const response = await fetch('/api/checkLoginStatus');
-            const data = await response.json();
-
-            if (data.loggedIn) {
-                document.getElementById('login-status').innerHTML = `<p>Welcome, ${data.username}!</p>`;
-                renderAchievements(data.badges);
-            } else {
-                document.getElementById('login-status').innerHTML = `<p><a href="/login">Login with Roblox</a></p>`;
-            }
-        }
-
-        function renderAchievements(badges) {
-            const achievements = [
-                { id: 'firstKill', title: 'First Kill', description: 'Earn your first kill in the game.' },
-                { id: 'teamPlayer', title: 'Team Player', description: 'Complete a match with at least 5 team assists.' },
-                { id: 'flagCapturer', title: 'Flag Capturer', description: 'Capture 10 flags in Capture the Flag mode.' },
-                { id: 'dominantForce', title: 'Dominant Force', description: 'Dominate 10 matches in Domination mode.' },
-                { id: 'kingOfTheHill', title: 'King of the Hill', description: 'Achieve victory in King of the Hill mode 5 times.' },
-                { id: 'freeForAllChampion', title: 'Free-for-All Champion', description: 'Win 3 Free-for-All matches.' }
-            ];
-
-            const achievementsList = document.getElementById('achievements-list');
-            achievementsList.innerHTML = '';
-
-            achievements.forEach(achievement => {
-                const isUnlocked = badges.includes(achievement.id);
-                const cardClass = isUnlocked ? 'card unlocked' : 'card locked';
-                const buttonText = isUnlocked ? 'Unlocked' : 'Locked';
-
-                const cardHtml = `
-                    <div class="${cardClass}">
-                        <h4>${achievement.title}</h4>
-                        <p>${achievement.description}</p>
-                        <a href="#">${buttonText}</a>
-                    </div>
-                `;
-                achievementsList.innerHTML += cardHtml;
-            });
-        }
-
-        window.onload = checkLoginStatus;
-    </script>
 </body>
 </html>
