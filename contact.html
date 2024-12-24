@@ -33,33 +33,28 @@
             color: #238636;
         }
 
-        header .home-btn {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            background-color: #238636;
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
             color: #c9d1d9;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        header .home-btn:hover {
-            background-color: #2ea043;
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(35, 134, 54, 0.5);
+        nav a:hover {
+            background-color: #238636;
+            transform: scale(1.05);
         }
 
-        header .home-btn:active {
-            transform: scale(1);
-            box-shadow: none;
-        }
-
-        header .home-btn:focus {
+        nav a:focus {
             outline: none;
         }
 
@@ -141,8 +136,15 @@
 <body>
 
     <header>
-        <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
         <h1>Chaos Core</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="weapons.html">Weapons</a>
+            <a href="maps.html">Maps</a>
+            <a href="teams.html">Teams</a>
+            <a href="tactics.html">Tactics</a>
+            <a href="achievements.html">Achievements</a>
+        </nav>
     </header>
 
     <div class="container">
