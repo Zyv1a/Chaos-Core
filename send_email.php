@@ -1,28 +1,33 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $form_type = htmlspecialchars($_POST['form_type']);
-    $email = htmlspecialchars($_POST['email']);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    if ($form_type == 'recrutement') {
-        $role = htmlspecialchars($_POST['role']);
-        $experience = htmlspecialchars($_POST['experience']);
-        $subject = "Recrutement - $role";
-        $message = "Rôle recherché: $role\nExperience: $experience\nEmail: $email";
-    } elseif ($form_type == 'suggestion_bug') {
-        $issue_type = htmlspecialchars($_POST['issue_type']);
-        $details = htmlspecialchars($_POST['details']);
-        $subject = "$issue_type soumis";
-        $message = "$issue_type: $details\nEmail: $email";
-    }
+require 'vendor/autoload.php';
 
-    $to = "votre-email@example.com"; // Remplacez par l'email de destination
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
+$mail = new PHPMailer(true);
 
-    if (mail($to, $subject, $message, $headers)) {
-        echo "Merci pour votre soumission. Votre message a été envoyé.";
-    } else {
-        echo "Une erreur est survenue lors de l'envoi du message.";
-    }
+try {
+    // Configuration SMTP (exemple avec Gmail)
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'votre-email@gmail.com'; // Votre email Gmail
+    $mail->Password = 'votre-mot-de-passe';   // Votre mot de passe Gmail
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    // Expéditeur et destinataire
+    $mail->setFrom('votre-email@gmail.com', 'Nom de l\'expéditeur');
+    $mail->addAddress('votre-email@example.com'); // Adresse où recevoir l'email
+
+    // Contenu de l'email
+    $mail->isHTML(true);
+    $mail->Subject = 'Test PHPMailer';
+    $mail->Body    = 'Ceci est un test envoyé avec PHPMailer.';
+
+    $mail->send();
+    echo 'Message a été envoyé';
+} catch (Exception $e) {
+    echo "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>
