@@ -3,94 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Contact</title>
+    <title>Formulaire de Contact - Chaos Core</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        form {
-            background-color: white;
+
+        header {
+            background: #161b22;
+            padding: 20px 0;
+            border-bottom: 2px solid #238636;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #238636;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
+            background: #161b22;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
+
+        .form-title {
+            font-size: 2rem;
+            color: #238636;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         label {
             display: block;
             margin: 10px 0 5px;
+            color: #c9d1d9;
         }
+
         input, select, textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #238636;
+            border-radius: 5px;
+            background: #0d1117;
+            color: #c9d1d9;
         }
+
         input[type="submit"], button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #238636;
+            color: #c9d1d9;
+            padding: 12px 20px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         input[type="submit"]:hover, button:hover {
-            background-color: #45a049;
+            background-color: #2ea043;
+            transform: scale(1.05);
         }
+
         .hidden {
             display: none;
+        }
+
+        footer {
+            background: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #238636;
+            color: #8b949e;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h2>Formulaire de Contact</h2>
+    <header>
+        <h1>Chaos Core</h1>
+    </header>
 
-    <form action="https://formspree.io/f/xannnelr" method="POST">
-        
-        <label for="form_type">Type de Formulaire :</label>
-        <select name="form_type" id="form_type" required onchange="toggleFormFields()">
-            <option value="">Sélectionnez un type de formulaire</option>
-            <option value="recrutement">Recrutement</option>
-            <option value="suggestion_bug">Suggestions et Bugs</option>
-        </select>
+    <div class="container">
+        <h2 class="form-title">Formulaire de Contact</h2>
 
-        <!-- Formulaire de recrutement -->
-        <div id="recrutement_form" class="hidden">
-            <label for="role">Quel rôle recherchez-vous ?</label>
-            <select name="role" id="role" required>
-                <option value="">Sélectionnez un rôle</option>
-                <option value="Scripteur">Scripteur</option>
-                <option value="Modélisateur">Modélisateur</option>
-                <option value="Designer">Designer</option>
-                <option value="Testeur">Testeur</option>
-                <option value="Administrateur">Administrateur</option>
+        <form action="https://formspree.io/f/xannnelr" method="POST">
+            
+            <label for="form_type">Type de Formulaire :</label>
+            <select name="form_type" id="form_type" required onchange="toggleFormFields()">
+                <option value="">Sélectionnez un type de formulaire</option>
+                <option value="recrutement">Recrutement</option>
+                <option value="suggestion_bug">Suggestions et Bugs</option>
             </select>
 
-            <label for="experience">Décrivez votre expérience :</label>
-            <textarea name="experience" id="experience" rows="4" required></textarea>
-        </div>
+            <!-- Formulaire de recrutement -->
+            <div id="recrutement_form" class="hidden">
+                <label for="role">Quel rôle recherchez-vous ?</label>
+                <select name="role" id="role" required>
+                    <option value="">Sélectionnez un rôle</option>
+                    <option value="Scripteur">Scripteur</option>
+                    <option value="Modélisateur">Modélisateur</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Testeur">Testeur</option>
+                    <option value="Administrateur">Administrateur</option>
+                </select>
 
-        <!-- Formulaire de suggestions et bugs -->
-        <div id="suggestion_bug_form" class="hidden">
-            <label for="issue_type">Type de soumission :</label>
-            <select name="issue_type" id="issue_type">
-                <option value="">Sélectionnez le type</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Bug">Bug</option>
-            </select>
+                <label for="experience">Décrivez votre expérience :</label>
+                <textarea name="experience" id="experience" rows="4" required></textarea>
+            </div>
 
-            <label for="details">Détails de la suggestion ou du bug :</label>
-            <textarea name="details" id="details"></textarea>
-        </div>
+            <!-- Formulaire de suggestions et bugs -->
+            <div id="suggestion_bug_form" class="hidden">
+                <label for="issue_type">Type de soumission :</label>
+                <select name="issue_type" id="issue_type">
+                    <option value="">Sélectionnez le type</option>
+                    <option value="Suggestion">Suggestion</option>
+                    <option value="Bug">Bug</option>
+                </select>
 
-        <!-- Champ email commun pour tous les types -->
-        <label for="email">Votre Email :</label>
-        <input type="email" name="email" id="email" required />
+                <label for="details">Détails de la suggestion ou du bug :</label>
+                <textarea name="details" id="details"></textarea>
+            </div>
 
-        <button type="submit">Envoyer</button>
-    </form>
+            <!-- Champ email commun pour tous les types -->
+            <label for="email">Votre Email :</label>
+            <input type="email" name="email" id="email" required />
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Chaos Core. Tous droits réservés.</p>
+    </footer>
 
     <script>
         // Fonction pour afficher/masquer les champs en fonction du type de formulaire sélectionné
