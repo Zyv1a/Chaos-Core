@@ -1,34 +1,30 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Adresse de réception
-    $to = "gleaming.blades.1@gmail.com";
-
-    // Sujet de l'email
-    $subject = "Nouvelle candidature pour Chaos Core";
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
     $category = htmlspecialchars($_POST['category']);
-    $message = htmlspecialchars($_POST['message']);
+    $question = htmlspecialchars($_POST['question']);
+    $email = htmlspecialchars($_POST['email']);
 
-    // Construire le contenu de l'email
-    $emailContent = "Nom : $name\n";
-    $emailContent .= "Email : $email\n";
-    $emailContent .= "Catégorie : $category\n\n";
-    $emailContent .= "Message :\n$message\n";
+    // Définir l'adresse email où envoyer le formulaire
+    $to = "votre-email@example.com"; // Modifiez cette ligne avec l'email souhaité
+    $subject = "Nouvelle question de la catégorie: $category";
 
-    // En-têtes de l'email
+    // Créer le message
+    $message = "
+    Catégorie: $category\n
+    Question: $question\n
+    Email: $email
+    ";
+
+    // Définir les en-têtes
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
 
     // Envoyer l'email
-    if (mail($to, $subject, $emailContent, $headers)) {
-        echo "Votre candidature a été envoyée avec succès ! Merci.";
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Merci de votre soumission. Votre message a été envoyé.";
     } else {
-        echo "Erreur lors de l'envoi. Veuillez réessayer.";
+        echo "Une erreur est survenue lors de l'envoi du message.";
     }
-} else {
-    echo "Méthode non autorisée.";
 }
 ?>
