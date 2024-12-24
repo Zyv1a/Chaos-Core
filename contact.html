@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Contact - Chaos Core</title>
+    <title>Contact Form - Chaos Core</title>
     <style>
         * {
             margin: 0;
@@ -24,12 +24,31 @@
             padding: 20px 0;
             border-bottom: 2px solid #238636;
             text-align: center;
+            position: relative;
         }
 
         header h1 {
             font-family: 'Pacifico', cursive;
             font-size: 3.5rem;
             color: #238636;
+        }
+
+        header .home-btn {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: #238636;
+            color: #c9d1d9;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        header .home-btn:hover {
+            background-color: #2ea043;
         }
 
         .container {
@@ -110,95 +129,96 @@
 <body>
 
     <header>
+        <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
         <h1>Chaos Core</h1>
     </header>
 
     <div class="container">
-        <h2 class="form-title">Formulaire de Contact</h2>
+        <h2 class="form-title">Contact Form</h2>
 
         <form action="https://formspree.io/f/xannnelr" method="POST">
             
-            <label for="form_type">Type de Formulaire :</label>
+            <label for="form_type">Form Type:</label>
             <select name="form_type" id="form_type" required onchange="toggleFormFields()">
-                <option value="">Sélectionnez un type de formulaire</option>
-                <option value="recrutement">Recrutement</option>
-                <option value="suggestion_bug">Suggestions et Bugs</option>
+                <option value="">Select a form type</option>
+                <option value="recruitment">Recruitment</option>
+                <option value="suggestion_bug">Suggestions and Bugs</option>
             </select>
 
-            <!-- Formulaire de recrutement -->
-            <div id="recrutement_form" class="hidden">
-                <label for="role">Quel rôle recherchez-vous ?</label>
+            <!-- Recruitment Form -->
+            <div id="recruitment_form" class="hidden">
+                <label for="role">What role are you applying for?</label>
                 <select name="role" id="role" required>
-                    <option value="">Sélectionnez un rôle</option>
-                    <option value="Scripteur">Scripteur</option>
-                    <option value="Modélisateur">Modélisateur</option>
+                    <option value="">Select a role</option>
+                    <option value="Scripter">Scripter</option>
+                    <option value="Modeler">Modeler</option>
                     <option value="Designer">Designer</option>
-                    <option value="Testeur">Testeur</option>
-                    <option value="Administrateur">Administrateur</option>
+                    <option value="Tester">Tester</option>
+                    <option value="Administrator">Administrator</option>
                 </select>
 
-                <label for="experience">Décrivez votre expérience :</label>
+                <label for="experience">Describe your experience:</label>
                 <textarea name="experience" id="experience" rows="4" required></textarea>
             </div>
 
-            <!-- Formulaire de suggestions et bugs -->
+            <!-- Suggestions and Bugs Form -->
             <div id="suggestion_bug_form" class="hidden">
-                <label for="issue_type">Type de soumission :</label>
-                <select name="issue_type" id="issue_type">
-                    <option value="">Sélectionnez le type</option>
+                <label for="issue_type">Type of Submission:</label>
+                <select name="issue_type" id="issue_type" required>
+                    <option value="">Select type</option>
                     <option value="Suggestion">Suggestion</option>
                     <option value="Bug">Bug</option>
                 </select>
 
-                <label for="details">Détails de la suggestion ou du bug :</label>
-                <textarea name="details" id="details"></textarea>
+                <label for="details">Details of suggestion or bug:</label>
+                <textarea name="details" id="details" required></textarea>
             </div>
 
-            <!-- Champ email commun pour tous les types -->
-            <label for="email">Votre Email :</label>
+            <!-- Common Email Field -->
+            <label for="email">Your Email:</label>
             <input type="email" name="email" id="email" required />
 
-            <button type="submit">Envoyer</button>
+            <button type="submit">Send</button>
         </form>
     </div>
 
     <footer>
-        <p>&copy; 2024 Chaos Core. Tous droits réservés.</p>
+        <p>&copy; 2024 Chaos Core. All rights reserved.</p>
     </footer>
 
     <script>
-        // Fonction pour afficher/masquer les champs en fonction du type de formulaire sélectionné
+        // Function to toggle between the forms based on selected type
         function toggleFormFields() {
             const formType = document.getElementById('form_type').value;
-            const recrutementForm = document.getElementById('recrutement_form');
+            const recruitmentForm = document.getElementById('recruitment_form');
             const suggestionBugForm = document.getElementById('suggestion_bug_form');
             const issueTypeField = document.getElementById('issue_type');
             const detailsField = document.getElementById('details');
 
-            if (formType === 'recrutement') {
-                recrutementForm.classList.remove('hidden');
+            if (formType === 'recruitment') {
+                recruitmentForm.classList.remove('hidden');
                 suggestionBugForm.classList.add('hidden');
-                // Rendre les champs requis pour le recrutement
+                // Make recruitment fields required
                 document.querySelector('select[name="role"]').setAttribute('required', 'required');
                 document.querySelector('textarea[name="experience"]').setAttribute('required', 'required');
                 
-                // Enlever les attributs "required" des champs de suggestion/bug
+                // Remove "required" from suggestion/bug fields
                 issueTypeField.removeAttribute('required');
                 detailsField.removeAttribute('required');
             } else if (formType === 'suggestion_bug') {
                 suggestionBugForm.classList.remove('hidden');
-                recrutementForm.classList.add('hidden');
-                // Rendre les champs requis pour suggestion/bug
+                recruitmentForm.classList.add('hidden');
+                // Make suggestion/bug fields required
                 issueTypeField.setAttribute('required', 'required');
                 detailsField.setAttribute('required', 'required');
                 
-                // Enlever les attributs "required" des champs de recrutement
+                // Remove "required" from recruitment fields
                 document.querySelector('select[name="role"]').removeAttribute('required');
                 document.querySelector('textarea[name="experience"]').removeAttribute('required');
             } else {
-                recrutementForm.classList.add('hidden');
+                recruitmentForm.classList.add('hidden');
                 suggestionBugForm.classList.add('hidden');
-                // Enlever les attributs "required" des deux formulaires
+                // Remove "required" from both forms
                 document.querySelector('select[name="role"]').removeAttribute('required');
                 document.querySelector('textarea[name="experience"]').removeAttribute('required');
                 issueTypeField.removeAttribute('required');
