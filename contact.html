@@ -105,7 +105,8 @@
 
         input[type="text"],
         input[type="email"],
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             background: #0d1117;
@@ -132,6 +133,11 @@
             background: #2ea043;
         }
 
+        .additional-questions {
+            display: none;
+            margin-top: 20px;
+        }
+
         footer {
             background: #161b22;
             padding: 20px;
@@ -144,25 +150,46 @@
             color: #8b949e;
         }
     </style>
+    <script>
+        function showAdditionalQuestions() {
+            var category = document.getElementById("category").value;
+            var additionalQuestions = document.getElementsByClassName("additional-questions");
+
+            // Hide all additional question sections
+            for (var i = 0; i < additionalQuestions.length; i++) {
+                additionalQuestions[i].style.display = "none";
+            }
+
+            // Show relevant additional question section based on category
+            if (category === "Scripteur") {
+                document.getElementById("scripteur-questions").style.display = "block";
+            } else if (category === "Modelisateur") {
+                document.getElementById("modelisateur-questions").style.display = "block";
+            } else if (category === "Designer") {
+                document.getElementById("designer-questions").style.display = "block";
+            } else if (category === "Testeur") {
+                document.getElementById("testeur-questions").style.display = "block";
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Chaos Core</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="contact.html">Contact</a> <!-- Lien vers la page Contact -->
+            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
     <div class="container">
         <section>
-            <h3 class="section-title">Contact Us</h3>
-            <p>We'd love to hear from you! Choose an option below to reach out.</p>
+            <h3 class="section-title">Recrutement</h3>
+            <p>Nous sommes toujours à la recherche de talents ! Veuillez remplir ce formulaire pour nous faire savoir pourquoi vous souhaitez nous rejoindre.</p>
 
             <div class="form-container">
-                <!-- Formulaire de recrutement -->
                 <div class="form-box">
-                    <h3>Recrutement</h3>
+                    <h3>Formulaire de Recrutement</h3>
                     <form action="/submit-recruitment" method="POST">
                         <label for="name">Votre Nom:</label>
                         <input type="text" id="name" name="name" required>
@@ -170,25 +197,50 @@
                         <label for="email">Votre Email:</label>
                         <input type="email" id="email" name="email" required>
 
-                        <label for="message">Pourquoi voulez-vous nous rejoindre?</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="category">Catégorie:</label>
+                        <select id="category" name="category" onchange="showAdditionalQuestions()" required>
+                            <option value="">Choisir une catégorie</option>
+                            <option value="Scripteur">Scripteur</option>
+                            <option value="Modelisateur">Modélisateur</option>
+                            <option value="Designer">Designer</option>
+                            <option value="Testeur">Testeur</option>
+                            <option value="Animateur">Animateur</option>
+                            <option value="Graphiste">Graphiste</option>
+                            <option value="Autre">Autre</option>
+                        </select>
 
-                        <button type="submit">Envoyer</button>
-                    </form>
-                </div>
+                        <!-- Additional questions based on category -->
+                        <div id="scripteur-questions" class="additional-questions">
+                            <label for="experience">Expérience en scripting (langages, projets, etc.):</label>
+                            <textarea id="experience" name="experience" rows="4" required></textarea>
 
-                <!-- Formulaire de suggestions et bugs -->
-                <div class="form-box">
-                    <h3>Suggestions & Bugs</h3>
-                    <form action="/submit-suggestions-bugs" method="POST">
-                        <label for="name2">Votre Nom:</label>
-                        <input type="text" id="name2" name="name" required>
+                            <label for="github">Lien vers votre GitHub (si applicable):</label>
+                            <input type="text" id="github" name="github">
+                        </div>
 
-                        <label for="email2">Votre Email:</label>
-                        <input type="email" id="email2" name="email" required>
+                        <div id="modelisateur-questions" class="additional-questions">
+                            <label for="portfolio">Lien vers votre portfolio (si applicable):</label>
+                            <input type="text" id="portfolio" name="portfolio" required>
 
-                        <label for="feedback">Votre suggestion ou rapport de bug:</label>
-                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                            <label for="experience-model">Expérience en modélisation (logiciels, projets, etc.):</label>
+                            <textarea id="experience-model" name="experience-model" rows="4" required></textarea>
+                        </div>
+
+                        <div id="designer-questions" class="additional-questions">
+                            <label for="design-experience">Expérience en design graphique (outils, projets, etc.):</label>
+                            <textarea id="design-experience" name="design-experience" rows="4" required></textarea>
+
+                            <label for="portfolio-design">Lien vers votre portfolio de design (si applicable):</label>
+                            <input type="text" id="portfolio-design" name="portfolio-design">
+                        </div>
+
+                        <div id="testeur-questions" class="additional-questions">
+                            <label for="bug-report">Avez-vous déjà trouvé des bugs dans des jeux Roblox ? Décrivez un exemple:</label>
+                            <textarea id="bug-report" name="bug-report" rows="4" required></textarea>
+
+                            <label for="testing-experience">Expérience en test de jeux vidéo:</label>
+                            <textarea id="testing-experience" name="testing-experience" rows="4" required></textarea>
+                        </div>
 
                         <button type="submit">Envoyer</button>
                     </form>
