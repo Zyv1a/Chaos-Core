@@ -1,30 +1,32 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "gleaming.blades.1@gmail.com"; // Adresse e-mail de destination
-    $subject = "Nouvelle candidature - Chaos Core";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Adresse de réception
+    $to = "gleaming.blades.1@gmail.com";
 
-    // Récupération des données du formulaire
+    // Sujet de l'email
+    $subject = "Nouvelle candidature pour Chaos Core";
+
+    // Récupérer les données du formulaire
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $category = htmlspecialchars($_POST['category']);
-    $messageContent = "Nom : $name\nEmail : $email\nCatégorie : $category\n";
+    $message = htmlspecialchars($_POST['message']);
 
-    // Ajouter les questions supplémentaires selon la catégorie
-    foreach ($_POST as $key => $value) {
-        if (!in_array($key, ['name', 'email', 'category'])) {
-            $messageContent .= ucfirst($key) . " : " . htmlspecialchars($value) . "\n";
-        }
-    }
+    // Construire le contenu de l'email
+    $emailContent = "Nom : $name\n";
+    $emailContent .= "Email : $email\n";
+    $emailContent .= "Catégorie : $category\n\n";
+    $emailContent .= "Message :\n$message\n";
 
     // En-têtes de l'email
-    $headers = "From: no-reply@chaoscore.com\r\n";
+    $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
 
-    // Envoi de l'e-mail
-    if (mail($to, $subject, $messageContent, $headers)) {
-        echo "Votre candidature a été envoyée avec succès !";
+    // Envoyer l'email
+    if (mail($to, $subject, $emailContent, $headers)) {
+        echo "Votre candidature a été envoyée avec succès ! Merci.";
     } else {
-        echo "Erreur : votre candidature n'a pas pu être envoyée.";
+        echo "Erreur lors de l'envoi. Veuillez réessayer.";
     }
 } else {
     echo "Méthode non autorisée.";
