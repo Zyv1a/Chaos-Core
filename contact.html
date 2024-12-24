@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Chaos Core</title>
     <style>
+        /* Reset et styles globaux */
         * {
             margin: 0;
             padding: 0;
@@ -19,6 +20,7 @@
             overflow-x: hidden;
         }
 
+        /* En-tête */
         header {
             background: #161b22;
             padding: 20px 0;
@@ -65,6 +67,7 @@
             width: 100%;
         }
 
+        /* Contenu principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -80,7 +83,7 @@
 
         .form-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             margin-top: 30px;
         }
 
@@ -89,12 +92,8 @@
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #238636;
-            width: 45%;
-        }
-
-        .form-box h3 {
-            color: #238636;
-            font-size: 1.8rem;
+            width: 100%;
+            max-width: 800px;
         }
 
         label {
@@ -138,6 +137,7 @@
             margin-top: 20px;
         }
 
+        /* Pied de page */
         footer {
             background: #161b22;
             padding: 20px;
@@ -152,23 +152,16 @@
     </style>
     <script>
         function showAdditionalQuestions() {
-            var category = document.getElementById("category").value;
-            var additionalQuestions = document.getElementsByClassName("additional-questions");
+            const category = document.getElementById("category").value;
+            const additionalQuestions = document.querySelectorAll(".additional-questions");
 
-            // Hide all additional question sections
-            for (var i = 0; i < additionalQuestions.length; i++) {
-                additionalQuestions[i].style.display = "none";
-            }
+            // Cacher toutes les questions supplémentaires
+            additionalQuestions.forEach(question => question.style.display = "none");
 
-            // Show relevant additional question section based on category
-            if (category === "Scripteur") {
-                document.getElementById("scripteur-questions").style.display = "block";
-            } else if (category === "Modelisateur") {
-                document.getElementById("modelisateur-questions").style.display = "block";
-            } else if (category === "Designer") {
-                document.getElementById("designer-questions").style.display = "block";
-            } else if (category === "Testeur") {
-                document.getElementById("testeur-questions").style.display = "block";
+            // Afficher les questions pertinentes
+            const selectedQuestions = document.getElementById(`${category}-questions`);
+            if (selectedQuestions) {
+                selectedQuestions.style.display = "block";
             }
         }
     </script>
@@ -177,29 +170,28 @@
     <header>
         <h1>Chaos Core</h1>
         <nav>
-            <a href="index.html">Home</a>
+            <a href="index.html">Accueil</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
     <div class="container">
         <section>
-            <h3 class="section-title">Recrutement</h3>
-            <p>Nous sommes toujours à la recherche de talents ! Veuillez remplir ce formulaire pour nous faire savoir pourquoi vous souhaitez nous rejoindre.</p>
+            <h2 class="section-title">Recrutement</h2>
+            <p>Nous recherchons des talents passionnés pour rejoindre l'équipe de Chaos Core !</p>
 
             <div class="form-container">
                 <div class="form-box">
-                    <h3>Formulaire de Recrutement</h3>
                     <form action="/submit-recruitment" method="POST">
-                        <label for="name">Votre Nom:</label>
+                        <label for="name">Nom complet :</label>
                         <input type="text" id="name" name="name" required>
 
-                        <label for="email">Votre Email:</label>
+                        <label for="email">Adresse email :</label>
                         <input type="email" id="email" name="email" required>
 
-                        <label for="category">Catégorie:</label>
+                        <label for="category">Catégorie :</label>
                         <select id="category" name="category" onchange="showAdditionalQuestions()" required>
-                            <option value="">Choisir une catégorie</option>
+                            <option value="">-- Sélectionner une catégorie --</option>
                             <option value="Scripteur">Scripteur</option>
                             <option value="Modelisateur">Modélisateur</option>
                             <option value="Designer">Designer</option>
@@ -209,7 +201,7 @@
                             <option value="Autre">Autre</option>
                         </select>
 
-                        <!-- Additional questions based on category -->
+                        <!-- Sections dynamiques -->
                         <div id="scripteur-questions" class="additional-questions">
                             <label for="experience">Quel(s) langage(s) de programmation maîtrisez-vous ?</label>
                             <textarea id="experience" name="experience" rows="4" required></textarea>
@@ -294,13 +286,10 @@
                         
                             <label for="other-ideas">Avez-vous des idées ou suggestions spécifiques pour améliorer Chaos Core ?</label>
                             <textarea id="other-ideas" name="other-ideas" rows="4" required></textarea>
-                        </div>
+                            </div>
 
-                            <label for="message">Message :</label><br>
-                            <textarea id="message" name="message" rows="6" required></textarea><br><br>
-
-                        <button type="submit">Envoyer</button>
-                   </form>
+                        <button type="submit">Envoyer la candidature</button>
+                    </form>
                 </div>
             </div>
         </section>

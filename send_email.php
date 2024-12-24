@@ -1,26 +1,30 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Adresse e-mail de destination
-    $to = "gleaming.blades.1@gmail.com";
+    $to = "gleaming.blades.1@gmail.com"; // Adresse e-mail de destination
+    $subject = "Nouvelle candidature - Chaos Core";
 
-    // Sujet de l'e-mail
-    $subject = "Nouvelle candidature pour Chaos Core";
+    // Récupération des données du formulaire
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $category = htmlspecialchars($_POST['category']);
+    $messageContent = "Nom : $name\nEmail : $email\nCatégorie : $category\n";
 
-    // Contenu de l'e-mail
-    $message = "Vous avez reçu une nouvelle candidature :\n\n";
+    // Ajouter les questions supplémentaires selon la catégorie
     foreach ($_POST as $key => $value) {
-        $message .= ucfirst($key) . ": " . htmlspecialchars($value) . "\n";
+        if (!in_array($key, ['name', 'email', 'category'])) {
+            $messageContent .= ucfirst($key) . " : " . htmlspecialchars($value) . "\n";
+        }
     }
 
-    // En-têtes de l'e-mail
+    // En-têtes de l'email
     $headers = "From: no-reply@chaoscore.com\r\n";
-    $headers .= "Reply-To: no-reply@chaoscore.com\r\n";
+    $headers .= "Reply-To: $email\r\n";
 
     // Envoi de l'e-mail
-    if (mail($to, $subject, $message, $headers)) {
-        echo "Votre formulaire a été envoyé avec succès !";
+    if (mail($to, $subject, $messageContent, $headers)) {
+        echo "Votre candidature a été envoyée avec succès !";
     } else {
-        echo "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer.";
+        echo "Erreur : votre candidature n'a pas pu être envoyée.";
     }
 } else {
     echo "Méthode non autorisée.";
