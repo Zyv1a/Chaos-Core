@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weapons - Chaos Core</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #161b22;
+            padding: 20px 0;
+            border-bottom: 2px solid #238636;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #238636;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #c9d1d9;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #238636;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: #238636;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .weapon-card {
+            background: #161b22;
+            border: 1px solid #238636;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            flex: 1 1 calc(33.333% - 40px);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .weapon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(35, 134, 54, 0.5);
+        }
+
+        .weapon-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #c9d1d9;
+        }
+
+        .weapon-card p {
+            margin-bottom: 15px;
+            color: #8b949e;
+        }
+
+        .weapon-card a {
+            text-decoration: none;
+            color: #0d1117;
+            background: #238636;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .weapon-card a:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #238636;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        /* Media Query for responsiveness */
+        @media screen and (max-width: 768px) {
+            .weapon-card {
+                flex: 1 1 calc(50% - 40px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .weapon-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chaos Core - Weapons</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="weapons.html">Weapons</a>
+            <a href="maps.html">Maps</a>
+            <a href="teams.html">Teams</a>
+            <a href="tactics.html">Tactics</a>
+            <a href="achievements.html">Achievements</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Weapon 1 -->
+        <div class="weapon-card">
+            <h4>Weapon Name 1</h4>
+            <p>Type: Rifle</p>
+            <p>Power: High</p>
+            <p>Range: Medium</p>
+            <a href="weapon1-details.html">More Info</a>
+        </div>
+
+        <!-- Weapon 2 -->
+        <div class="weapon-card">
+            <h4>Weapon Name 2</h4>
+            <p>Type: Pistol</p>
+            <p>Power: Medium</p>
+            <p>Range: Short</p>
+            <a href="weapon2-details.html">More Info</a>
+        </div>
+
+        <!-- Weapon 3 -->
+        <div class="weapon-card">
+            <h4>Weapon Name 3</h4>
+            <p>Type: Shotgun</p>
+            <p>Power: High</p>
+            <p>Range: Short</p>
+            <a href="weapon3-details.html">More Info</a>
+        </div>
+
+        <!-- Weapon 4 -->
+        <div class="weapon-card">
+            <h4>Weapon Name 4</h4>
+            <p>Type: Sniper</p>
+            <p>Power: Very High</p>
+            <p>Range: Long</p>
+            <a href="weapon4-details.html">More Info</a>
+        </div>
+
+        <!-- Weapon 5 -->
+        <div class="weapon-card">
+            <h4>Weapon Name 5</h4>
+            <p>Type: Submachine Gun</p>
+            <p>Power: Medium</p>
+            <p>Range: Medium</p>
+            <a href="weapon5-details.html">More Info</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Chaos Core. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
