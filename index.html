@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaos Core - Home</title>
     <style>
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -19,9 +20,10 @@
             overflow-x: hidden;
         }
 
+        /* Header */
         header {
             background: #161b22;
-            padding: 20px 0;
+            padding: 20px;
             border-bottom: 2px solid #238636;
             text-align: center;
         }
@@ -42,7 +44,7 @@
             margin: 0 15px;
             font-size: 1.2rem;
             position: relative;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         nav a::after {
@@ -54,7 +56,7 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            transition: width 0.3s;
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
@@ -65,6 +67,7 @@
             width: 100%;
         }
 
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -93,16 +96,16 @@
         .definition h2 {
             font-size: 2.5rem;
             color: #c9d1d9;
-            z-index: 2;
             padding: 10px 20px;
             border: 2px solid #238636;
             border-radius: 10px;
             background: rgba(35, 134, 54, 0.1);
         }
 
+        /* Explore Cards */
         .explore {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
@@ -116,7 +119,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
@@ -142,7 +145,7 @@
             padding: 12px 20px;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .card a:hover {
@@ -150,6 +153,7 @@
             transform: scale(1.05);
         }
 
+        /* Footer */
         footer {
             background: #161b22;
             padding: 20px;
@@ -160,15 +164,6 @@
         footer p {
             font-size: 0.9rem;
             color: #8b949e;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
     </style>
 </head>
@@ -183,49 +178,49 @@
     </header>
 
     <div class="container">
-        <!-- Definition of the game -->
+        <!-- Definition Section -->
         <section class="definition">
             <h2>Chaos Core: The Ultimate FPS Experience</h2>
-            <p>Chaos Core is an intense first-person shooter (FPS) game available on Roblox. Featuring a variety of game modes, diverse weapons, tactical strategies, and engaging maps, players can immerse themselves in thrilling battles. Whether you're working as a team or going solo, every moment in Chaos Core challenges your skills and strategy. Get ready for epic combat!</p>
+            <p>Experience intense battles, tactical gameplay, and thrilling challenges in the immersive world of Chaos Core.</p>
         </section>
 
+        <!-- About Section -->
         <section id="about">
             <h3 class="section-title">Discover Game Features & More</h3>
-            <p>Discover all the exciting game modes, weapons, maps, and other features of Chaos Core.</p>
+            <p>Explore the exciting game modes, weapons, and strategies that define Chaos Core.</p>
             <div class="explore">
                 <div class="card">
                     <h4>Game Modes</h4>
-                    <p>Check out all the exciting game modes available in Chaos Core!</p>
-                    <a href="all-modes.html">See All Game Modes</a>
+                    <p>Explore a variety of thrilling game modes!</p>
+                    <a href="all-modes.html">Explore Modes</a>
                 </div>
                 <div class="card">
                     <h4>Weapons</h4>
-                    <p>Discover the different weapons you can use to dominate the battlefield!</p>
-                    <a href="weapons.html">See Weapons</a>
+                    <p>Discover the arsenal available to dominate the battlefield.</p>
+                    <a href="weapons.html">View Weapons</a>
                 </div>
                 <div class="card">
                     <h4>Maps</h4>
-                    <p>Explore the diverse maps where intense battles take place.</p>
-                    <a href="maps.html">See Maps</a>
+                    <p>Get to know the maps where battles come to life.</p>
+                    <a href="maps.html">Explore Maps</a>
                 </div>
                 <div class="card">
                     <h4>Teams</h4>
-                    <p>Learn about the various teams you can join for strategic advantage.</p>
-                    <a href="teams.html">See Teams</a>
+                    <p>Learn about the teams and their unique advantages.</p>
+                    <a href="teams.html">View Teams</a>
                 </div>
                 <div class="card">
                     <h4>Tactics</h4>
-                    <p>Get tips and strategies to improve your performance in the game.</p>
-                    <a href="tactics.html">See Tactics</a>
+                    <p>Enhance your gameplay with expert tips and strategies.</p>
+                    <a href="tactics.html">Get Tips</a>
                 </div>
                 <div class="card">
                     <h4>Achievements</h4>
-                    <p>Track your progress and earn rewards for completing challenges.</p>
-                    <a href="achievements.html">See Achievements</a>
+                    <p>Track your milestones and unlock rewards.</p>
+                    <a href="achievements.html">View Achievements</a>
                 </div>
             </div>
         </section>
-
     </div>
 
     <footer>
